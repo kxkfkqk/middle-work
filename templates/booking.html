@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>台北一日遊-預定行程</title>
+<style type="text/css">
+.position{
+	position:relative;z-index:999; top:0;
+	position:absolute; z-index:999; top:0;
+	position:fixed; z-index:999; top:0;
+	width:100%;
+	background: #FFffff;
+}
+.top{
+    position: relative;margin-right: auto;margin-left: auto;
+	display:flex;
+	justify-content: flex-end;
+    width: 1200px;
+    height:54px;
+    background: #FFffff;
+	
+}
+.topleft{
+	flex:auto;
+    width:150px;padding-top:10px;padding-bottom: 10px;
+	height:34px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 34px;
+    color: #448899;
+}		
+.topmiddle{      
+	padding-right:20px;padding-bottom: 20px;padding-top: 20px;
+	width:64px;
+	height:14px;
+    flex: none;
+	line-height: 13px;
+}
+.topright{     /*  漢堡線 */
+	width:71px;
+	height:14px;
+	padding-bottom: 20px;padding-top: 20px;
+    flex: none;
+	font-size:16px;
+	line-height: 13px;
+}	
+.biggallery{
+	margin-right:auto;margin-left:auto;
+}
+.biggallery img{                                     
+	width:540px;
+	height:406px;
+}
+#photot{		
+	width:1200px;
+	display:flex;flex-wrap:wrap;
+	justify-content: center;
+	margin-right:auto;margin-left:auto;padding-right: 15px;padding-left: 15px;
+	position: relative;top:64px;
+}
+.detailwordrule{
+	margin-right:auto;margin-left:auto;
+	display: flex;flex-wrap: wrap;
+	justify-content: center;
+	width:650px;
+}
+.detailwordrule2{
+	margin-right:auto;margin-left:auto;
+	display: flex;flex-wrap: wrap;
+	justify-content: center;
+	width:600px;height:300px;
+	background: #E8E8E8;
+	
+}
+#detailword{
+	width: 600px;
+	height: 33px;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 24px;
+
+	display: flex;
+	align-items: center;
+
+	
+	color: #666666;
+} 
+#detailword2{
+	width: 600px;
+	height: 22px;
+	font-size: 16px;
+	line-height: 16px;
+	
+	display: flex;
+	align-items: center;
+	
+	/* Gray 800 */
+
+	color: #666666;
+}
+.detailword3{
+	width: 560px;
+	height: 22px;
+	font-size: 16px;
+	line-height: 16px;
+	
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	/* Gray 800 */
+
+	color: #666666;
+}
+.detailword4{
+	width: 560px;
+	height: 22px;
+	font-size: 16px;
+	line-height: 16px;
+	
+	display: flex;
+	align-items: center;
+	
+	/* Gray 800 */
+
+	color: #666666;
+}
+</style>
+<script>
+function start(){
+    let data = document.getElementById("name");
+    let src = "http://127.0.0.1:3000/api/attraction/4";
+    fetch(src).then(function(response){										
+		return response.json();												
+	}).then(function(result){						
+        console.log(result);
+        let w = result["data"]["name"] ;
+        let word = document.createTextNode(w) ;
+        let where = document.getElementById("detailword") ;
+        where.appendChild(word)
+        let w1 = result["data"]["category"] + " at " + result["data"]["mrt"] ;
+        let word2 = document.createTextNode(w1) ;
+        let where2 = document.getElementById("detailword2") ;
+        where2.appendChild(word2);
+	});                             
+}
+</script>
+</head>
+<body onload = "start();">
+    <div id = "name">{{name}}</div>
+    <div class = "position" id = "position">
+        <div class = "top">
+            <div class = "topleft">台北一日遊</div>
+            <div class = "topmiddle">預定行程</div>
+            <div class = "topright">登入/住宿</div>
+        </div>
+    </div>
+    <div id="photot">
+        <div calss = "biggallery">
+            
+        </div>
+        <div class = "detailwordrule">
+            <div id = "detailword"></div>
+            <div id = "detailword2"></div>
+        </div>
+        <div class = "detailwordrule2">
+            <div class = detailword4>訂購導覽行程</div>
+            <div class = detailword3>以此景點為中心的一日行程，帶您探索城市角落故事</div>
+            <div class = detailword4>選擇日期:</div><input type = "date">
+            <div class = detailword4>訂購導覽行程</div>
+            <div class = detailword4>訂購導覽行程</div>
+            <div class = detailword4>訂購導覽行程</div>
+        </div>
+    </div>
+</body>
+</html>
